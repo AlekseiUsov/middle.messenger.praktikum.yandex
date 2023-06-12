@@ -18,5 +18,4 @@ export function handlebars(): PluginOption {
             return { code };
         }
     }
-
 }
