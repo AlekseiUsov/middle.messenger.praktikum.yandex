@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/836f4725-3f2e-4d06-b4c1-cbf586212110/deploy-status)](https://app.netlify.com/sites/marvelous-manatee-91a114/deploys)
-
 ## Web-messanger
 
 ## Описание:
