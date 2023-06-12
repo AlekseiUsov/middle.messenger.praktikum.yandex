@@ -1,5 +1,39 @@
-# web-messenger
-Учебный проект Яндекс-Практикума на курсе "Middle-Frontend разработчик"
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7d4be5d5-a5b1-4b3c-86bc-52a8f6d70b3a/deploy-status)](https://app.netlify.com/sites/bright-kringle-49c802/deploys)
+## Web-messanger
+
+## Описание:
+
+Учебный проект от Яндекс Практикума по созданию веб-мессенджера. 
 
 
+### Технологический стек:
+
+- HandleBars - шаблонизатор
+- SCSS
+- Vite
+- TypeScript
+- Netlify - деплой
+
+
+### Установка:
+
+- npm i - установка зависимостей
+- npm run start - версия для разработки 
+- npm run build - версия для продакшена
+
+
+### Ссылки:
+
+Макет фигмы:
+https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?type=design&node-id=0-1&t=PrLZ9wClcK2ElqEb-0
+
+Ссылка на NETLIFY:
+https://adorable-snickerdoodle-d599ef.netlify.app/
+
+Страницы приложения:
+
+Главная: http://localhost:3000/
+Вход: http://localhost:3000/login
+Регистрация: http://localhost:3000/registration
+Профиль: http://localhost:3000/profile
+Страница не найдена: http://localhost:3000/not_found
+Ошибка: http://localhost:3000/error
