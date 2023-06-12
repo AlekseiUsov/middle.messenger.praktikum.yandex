@@ -29,7 +29,7 @@
 https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?type=design&node-id=0-1&t=PrLZ9wClcK2ElqEb-0
 
 ##### Ссылка на NETLIFY:
-https://adorable-snickerdoodle-d599ef.netlify.app/
+https://marvelous-manatee-91a114.netlify.app
 
 ##### Страницы приложения:
 
