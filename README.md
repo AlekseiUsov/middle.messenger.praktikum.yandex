@@ -23,13 +23,13 @@
 
 ### Ссылки:
 
-Макет фигмы:
+##### Макет фигмы:
 https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?type=design&node-id=0-1&t=PrLZ9wClcK2ElqEb-0
 
-Ссылка на NETLIFY:
+##### Ссылка на NETLIFY:
 https://adorable-snickerdoodle-d599ef.netlify.app/
 
-Страницы приложения:
+##### Страницы приложения:
 
 Главная: http://localhost:3000/
 Вход: http://localhost:3000/login
