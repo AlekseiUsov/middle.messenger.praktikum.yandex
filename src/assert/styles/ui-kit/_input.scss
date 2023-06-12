@@ -1,0 +1,45 @@
+@import '../vars';
+
+
+.form-input {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.margin-top-large {
+    margin-top: 150px;
+}
+
+.form-input input {
+    color: $black;
+    padding: 0;
+
+    height: 100%;
+    width: 100%;
+    border: none;
+
+    border-bottom: 2px solid $blue;
+}
+
+.form-input input:focus {
+    outline: none;
+}
+
+.form-input label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+
+    color: $grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-input input:focus~label {
+    bottom: 0;
+    top: 0;
+    font-size: 9px;
+    line-height: 9px;
+}

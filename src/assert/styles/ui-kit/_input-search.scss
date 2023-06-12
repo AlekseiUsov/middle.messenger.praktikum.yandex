@@ -1,0 +1,36 @@
+.search {
+    position: relative;
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        height: 42px;
+        padding-left: 10px;
+        border: 1px solid $grey;
+        border-radius: 5px;
+        outline: none;
+        background: $super-ligth-grey;
+        color: $grey;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0px;
+
+        width: 42px;
+        height: 42px;
+
+        border: none;
+        background: $super-ligth-grey;
+        border: 1px solid $grey;
+        border-radius: 0 5px 5px 0;
+
+        cursor: pointer;
+    }
+
+    button img {
+        width: 30px;
+        height: 30px;
+    }
+}

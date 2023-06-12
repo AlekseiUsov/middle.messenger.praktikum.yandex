@@ -1,0 +1,42 @@
+@import '../vars';
+
+.chat {
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid $ligth-grey;
+    margin-left: 20px;
+
+    &__user {
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+    }
+
+    &__avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+        background-color: $super-ligth-grey;
+    }
+
+    &__dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__dots img {
+        height: 15px;
+    }
+}
