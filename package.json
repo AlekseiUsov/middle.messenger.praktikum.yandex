@@ -7,10 +7,10 @@
     "node": ">=16"
   },
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite build && node src/server.js "
+    "start": "vite build && node ./src/server.js "
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
