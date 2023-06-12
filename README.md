@@ -31,9 +31,9 @@ https://adorable-snickerdoodle-d599ef.netlify.app/
 
 ##### Страницы приложения:
 
-Главная: http://localhost:3000/
-Вход: http://localhost:3000/login
-Регистрация: http://localhost:3000/registration
-Профиль: http://localhost:3000/profile
-Страница не найдена: http://localhost:3000/not_found
-Ошибка: http://localhost:3000/error
+###### Главная: http://localhost:3000/
+###### Вход: http://localhost:3000/login
+###### Регистрация: http://localhost:3000/registration
+###### Профиль: http://localhost:3000/profile
+###### Страница не найдена: http://localhost:3000/not_found
+###### Ошибка: http://localhost:3000/error
