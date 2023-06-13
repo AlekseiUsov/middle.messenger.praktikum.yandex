@@ -10,6 +10,7 @@ import Handlebars from 'handlebars/runtime';
 import button from './src/partials/ui-kit/button.hbs'
 import input from './src/partials/ui-kit/input.hbs'
 import inputSearch from './src/partials/ui-kit/input-search.hbs'
+
 import link from './src/partials/ui-kit/link.hbs'
 
 //Component 
@@ -22,6 +23,7 @@ import formProfile from './src/partials/components/forms/form-profile.hbs'
 import formPassword from './src/partials/components/forms/form-password.hbs'
 
 //others
+import chatFooter from './src/partials/components/chat-footer.hbs'
 import error from './src/partials/components/error.hbs'
 import profileItem from './src/partials/components/profile-item.hbs'
 import avatar from './src/partials/components/avatar.hbs'
@@ -37,6 +39,8 @@ Handlebars.registerPartial('button', button);
 Handlebars.registerPartial('input', input);
 Handlebars.registerPartial('link', link);
 Handlebars.registerPartial('input-search', inputSearch);
+Handlebars.registerPartial('chat-footer', chatFooter);
+
 
 //form partials
 Handlebars.registerPartial('form', form);

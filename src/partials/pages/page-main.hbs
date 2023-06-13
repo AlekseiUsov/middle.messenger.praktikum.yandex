@@ -14,5 +14,9 @@
 </header>
 <main class="main-page">
     {{>chats}}
-    {{>chat name="Леха"}}
+    <div class="main-page__inner">
+        {{>chat name="Леха"}}
+        <div class="main-page__block"></div>
+        {{> chat-footer}}
+    </div>
 </main>
