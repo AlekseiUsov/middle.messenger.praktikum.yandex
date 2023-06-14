@@ -1,0 +1,61 @@
+@import '../vars';
+
+
+.chats-item {
+    display: flex;
+    height: 70px;
+    padding: 12px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid $ligth-grey;
+
+    &__inner {
+        margin-left: 10px;
+    }
+
+    &__inner:last-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: auto;
+    }
+
+    &__avatar {
+        align-self: center;
+        border-radius: 50%;
+        width: 47px;
+        height: 47px;
+        background-color: $super-ligth-grey;
+    }
+
+    &__name {
+        color: $black;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    &__message {
+        color: $grey;
+        font-size: 12px;
+        line-height: 15px;
+        align-items: flex-end;
+    }
+
+    &__data {
+        font-size: 9px;
+        color: $grey;
+    }
+
+    &__count {
+        align-items: flex-end;
+
+        width: 15px;
+        height: 15px;
+
+        border-radius: 50%;
+        background-color: $blue;
+
+        font-size: 11px;
+        line-height: 12px;
+        color: $white;
+    }
+}

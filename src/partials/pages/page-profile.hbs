@@ -1,0 +1,18 @@
+<form class="profile" password="true">
+    {{> avatar}}
+    <h1 class="title">Иван</h1>
+    <div class="form-profile">
+        {{> form-profile}}
+    </div>
+    <div class="form-profile  form-hidden">
+        {{> form-password}}
+    </div>
+    <div class="profile__change-data">
+        <button class="profile__button">Изменить данные</button>
+        <button class="profile__button">Изменить данные</button>
+        <button class="profile__button">Выйти</button>
+    </div>
+    <div class="form-hidden">
+        {{> button text="Сохранить"}}
+    </div>
+</form>

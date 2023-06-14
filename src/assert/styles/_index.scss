@@ -1,0 +1,51 @@
+//pages
+@import './pages/page-login';
+@import './pages/page-registration';
+@import './pages/page-profile';
+@import './pages/page-main';
+
+//components
+@import './components/error';
+@import './components/profile-item';
+@import './components/avatar';
+@import './components/form';
+@import './components/chat';
+@import './components/chats';
+@import './components/chats-item';
+@import './components/chat-footer';
+
+//ui
+@import './ui-kit/button';
+@import './ui-kit/input';
+@import './ui-kit/input-search';
+@import './ui-kit/link';
+
+//vars
+@import './vars';
+
+//normalize
+@import './normalize';
+
+$font-stack: Inter, sans-serif;
+
+body {
+    font: 100% $font-stack;
+    color: $black;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: calc(1240px + 16px * 2);
+
+    margin: 0 auto;
+    padding: 0 16px;
+}

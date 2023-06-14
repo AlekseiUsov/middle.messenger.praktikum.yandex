@@ -1,0 +1,13 @@
+<form class="form">
+    <div class="form__block">
+        <h1 class="form__title">{{title}}</h1>
+        {{#if login}}
+        {{> form-login}}
+        {{> button text="Авторизоваться" }}
+        {{> link path="/registration-page" text="Нет аккаунта"}}{{else}}
+        {{> form-registration}}
+        {{> button text="Зарегистрироваться" }}
+        {{> link path="/registration-page" text="Войти"}}
+        {{/if}}
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<header class="header">
+    <a class="logo" href="/">
+        <img src="../src/assert/icons/telegram.png" alt="logo">
+    </a>
+    <nav class="nav">
+        <ul class="nav__list">
+            <li><a href="/profile/">Профиль</a></li>
+            <li><a href="/login/">Вход</a></li>
+            <li><a href="/registration/">Регистрация</a></li>
+            <li><a href="/not_found/">Страница не найдена</a></li>
+            <li><a href="/error/">Ошибка</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main-page">
+    {{>chats}}
+    <div class="main-page__inner">
+        {{>chat name="Леха"}}
+        <div class="main-page__block"></div>
+        {{> chat-footer}}
+    </div>
+</main>
