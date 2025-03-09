@@ -1,5 +1,5 @@
 {
-  "name": "dsfdf",
+  "name": "middle.messenger.praktikum.yandex",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,11 +10,10 @@
   },
   "devDependencies": {
     "handlebars": "^4.7.8",
+    "path": "^0.12.7",
+    "sass": "^1.85.1",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
     "vite-plugin-handlebars": "^2.0.0"
-  },
-  "dependencies": {
-    "path": "^0.12.7"
   }
 }
