@@ -1,0 +1,13 @@
+<div class="chat">
+    {{> Avatar src=src }}
+    <div class="chat__inner">
+    <div class="chat__userName">{{userName}}</div>
+    <div class="chat__message">
+        {{#if isYou}}
+        <span class="chat__isYou">Вы:</span>
+        {{/if}}
+        {{message}}
+    </div>
+    </div>
+</div>
+
