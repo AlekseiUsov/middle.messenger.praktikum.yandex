@@ -12,6 +12,7 @@ npm run start - сборка и запуск на 3000 порту
 ### Публикация на Netlify
 
 https://messanger-by-alex-de-suze.netlify.app/
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c577baf2-4deb-4ab3-bdac-0edf04fe8944/deploy-status)](https://app.netlify.com/sites/messanger-by-alex-de-suze/deploys)
 
 ### Страницы:
 
