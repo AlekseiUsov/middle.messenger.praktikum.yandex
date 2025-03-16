@@ -9,6 +9,10 @@ https://www.figma.com/design/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0
 npm run dev - режим разработки
 npm run start - сборка и запуск на 3000 порту
 
+### Публикация на Netlify
+
+https://messanger-by-alex-de-suze.netlify.app/
+
 ### Страницы:
 
 localhost:3000/ или localhost:3000/main -главная
