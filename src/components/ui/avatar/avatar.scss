@@ -1,0 +1,12 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--black);
+  &__icon {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    background-color: var(--grey);
+  }
+}

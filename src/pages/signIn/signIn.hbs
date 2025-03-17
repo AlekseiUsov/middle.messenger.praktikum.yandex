@@ -1,0 +1,13 @@
+<div class="signIn">
+    <div class="signIn__inner">
+        <h1 class="signIn__title">Вход</h1>
+        <form class="signIn__form">
+            {{>Input label="Логин" type="text" id="login" name='login' error="неверный логин"}}
+            {{>Input label="Пароль" type="password" id="password" name='password'}}
+        </form>
+        <div class="signIn__buttons">
+        {{>Button text='Авторизоваться' }}
+        {{>Link text="Нет аккаунта?" href='/'}}
+        </div>
+    </div>
+</div>

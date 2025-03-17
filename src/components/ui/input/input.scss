@@ -1,0 +1,72 @@
+// https://frontendin.com/45-css-input-text-example/ взял с этой сайта
+.form-field {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-field input {
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--dark-grey);
+}
+
+.form-field input:focus {
+  outline: none;
+}
+
+.form-field label {
+  color: var(--dark-grey);
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 3px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+.form-field input:focus ~ label,
+.form-field input:valid ~ label {
+  top: -13px;
+  font-size: 14px;
+  color: var(--blue);
+}
+
+.form-field .error {
+  position: absolute;
+  top: 40px;
+  left: 3px;
+  color: var(--red);
+}
+
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: var(--blue);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: var(--blue);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: var(--blue);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

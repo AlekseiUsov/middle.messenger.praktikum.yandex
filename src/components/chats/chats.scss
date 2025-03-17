@@ -1,0 +1,20 @@
+.chats {
+  padding: 20px 12px;
+  border-right: 1px solid var(--grey);
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    gap: 12px;
+    padding: 0 10px;
+    color: var(--dark-grey);
+  }
+
+  &__list {
+    overflow-y: auto;
+    max-height: 100vh;
+    scrollbar-width: thin;
+  }
+}
