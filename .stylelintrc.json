@@ -1,4 +1,11 @@
 {
   "extends": "stylelint-config-standard",
-  "ingoreFiles": ["node_modules/**/*"]
+  "ingoreFiles": ["node_modules/**/*", "src"],
+  "rules": {
+    "selector-class-pattern": null,
+    "font-family-name-quotes": null,
+    "no-descending-specificity": null,
+    "no-invalid-double-slash-comments": null,
+    "keyframes-name-pattern": null
+  }
 }

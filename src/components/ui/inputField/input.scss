@@ -24,8 +24,6 @@
   left: 3px;
   top: 10px;
   transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
 }
 
 /* active state */
@@ -40,28 +38,33 @@
   font-size: 8px;
 }
 
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: var(--blue);
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
-@-moz-keyframes inputHighlighter {
-  from {
-    background: var(--blue);
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
-}
 @keyframes inputHighlighter {
   from {
     background: var(--blue);
   }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: var(--blue);
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: var(--blue);
+  }
+
   to {
     width: 0;
     background: transparent;

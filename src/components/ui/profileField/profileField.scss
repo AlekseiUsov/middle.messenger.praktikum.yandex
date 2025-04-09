@@ -5,9 +5,11 @@
   width: 100%;
   border-bottom: 1px solid var(--light-grey);
   padding: 6px;
+
   > label {
     font-weight: 500;
   }
+
   > input {
     text-align: right;
     color: var(--dark-grey);
