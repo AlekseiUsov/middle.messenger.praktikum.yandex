@@ -1,13 +1,7 @@
-<div class="profile-field">
-  <label id={{id}}>
+<div class="profile-field {{#if error}}error{{/if}}">
+  <label for="{{id}}">
     {{label}}
   </label>
-  <input
-    required
-    type={{type}}
-    for={{id}}
-    name={{name}}
-    value={{value}}
-    disabled={{isDisabled}}
-  />
+  {{{Input}}}
+  {{#if error}} <div class="errorText">{{errorText}}</div>{{/if}}
 </div>

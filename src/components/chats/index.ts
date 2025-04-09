@@ -1,2 +1,2 @@
 import "./chats.scss";
-export { default as Chats } from "./chats.hbs?raw";
+export { default as chats } from "./chats.hbs?raw";

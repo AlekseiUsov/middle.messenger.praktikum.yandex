@@ -10,6 +10,6 @@ export interface IEvents {
 
 export type TChildren = Record<string, Block>;
 export type TProps = Record<string, unknown> & {
-  events?: Record<string, () => void>;
+  events?: Record<string, Callback>;
 };
 export type TPropsAndChildren = TChildren | TProps;

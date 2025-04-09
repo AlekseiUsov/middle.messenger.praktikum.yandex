@@ -1,3 +1,4 @@
+import Handlebars from "handlebars";
 import { TChildren, TProps, TPropsAndChildren } from "./types";
 import { EventBus } from "./EventBus";
 import { v4 as makeId } from "uuid";
@@ -29,6 +30,9 @@ class Block {
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, (oldProps, newProps) =>
+      this._componentDidUpdate(oldProps as TProps, newProps as TProps)
+    );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -36,8 +40,9 @@ class Block {
     const { events } = this.props;
     if (events) {
       Object.keys(events).forEach((eventName) => {
-        if (this._element)
+        if (this._element) {
           this._element.addEventListener(eventName, events[eventName]);
+        }
       });
     }
   }
@@ -65,10 +70,15 @@ class Block {
   dispatchComponentDidMount() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
+  dispatchComponentDidUpdate() {
+    this.eventBus.emit(Block.EVENTS.FLOW_CDU);
+  }
 
-  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    const isNeedUpdate = this._isEqual(oldProps, newProps);
-    if (!isNeedUpdate) {
+  componentDidUpdate() {}
+
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    const isPropsEqual = this._isEqual(oldProps, newProps);
+    if (isPropsEqual) {
       return;
     }
     this._render();
@@ -79,8 +89,8 @@ class Block {
       return;
     }
     const oldProps = { ...this.props };
-    if (this._isEqual(this.props, nextProps)) {
-      Object.assign(this.props, nextProps);
+    if (!this._isEqual(this.props, nextProps)) {
+      this.props = { ...this.props, ...nextProps };
     }
     this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, this.props);
   };
@@ -97,7 +107,7 @@ class Block {
     const fragment = this._createDocumentElement("template");
     fragment.innerHTML = Handlebars.compile(this.render())(props);
     Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+      const stub = fragment.content.querySelector(`[data-id='${child._id}']`);
       if (stub) {
         stub.replaceWith(child.getContent());
       }
@@ -111,7 +121,7 @@ class Block {
   }
 
   render(): string {
-    return "<div></div>";
+    return "";
   }
 
   private _makePropsProxy(props: TProps) {
@@ -134,6 +144,7 @@ class Block {
   private _getPropsAndChildren(propsAndChildren: TPropsAndChildren) {
     const children: TChildren = {};
     const props: TProps = {};
+
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
@@ -141,7 +152,6 @@ class Block {
         props[key] = value;
       }
     });
-
     return { props, children };
   }
 
@@ -156,9 +166,7 @@ class Block {
       const value1 = oldProps[key];
       const value2 = newProps[key];
 
-      if (key !== "events") {
-        return value1 === value2;
-      }
+      return value1 === value2;
     });
   }
 

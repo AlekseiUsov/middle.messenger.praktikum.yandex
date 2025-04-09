@@ -1,18 +1,20 @@
 <div class="registration">
-    <div class="registration__inner">
-        <h1 class="registration__title">Регистрация</h1>
-        <form class="registration__form">
-            {{>Input label="Почта" type="email" id="email" name='email'}}
-            {{>Input label="Логин" type="text" id="login" name='login'}}
-            {{>Input label="Имя" type="text" id="first_name" name='first_name'}}
-            {{>Input label="Фамилия" type="text" id="second_name" name='second_name'}}
-            {{>Input label="Телефон" type="tel" id="phone" name='phone'}}
-            {{>Input label="Пароль" type="password" id="password" name='password' error="ошибка"}}
-            {{>Input label="Повторить пароль" type="password" id="repeat_password" name='password'}}
-        </form>
-        <div class="registration__buttons">
-        {{>Button text='Зарегистрироваться' }}
-        {{>Link text="Войти" href='/'}}
-        </div>
+  <div class="registration__inner">
+    <h1 class="registration__title">
+      Регистрация
+    </h1>
+    <form class="registration__form">
+      {{{Email}}}
+      {{{Login}}}
+      {{{FirstName}}}
+      {{{SecondName}}}
+      {{{Phone}}}
+      {{{Password}}}
+      {{{RepeatPassword}}}
+    </form>
+    <div class="registration__buttons">
+      {{{Button}}}
+      {{{Link}}}
     </div>
+  </div>
 </div>

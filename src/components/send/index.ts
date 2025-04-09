@@ -1,2 +1,2 @@
 import "./send.scss";
-export { default as Send } from "./send.hbs?raw";
+export { default as send } from "./send.hbs?raw";

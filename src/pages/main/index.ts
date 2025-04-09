@@ -1,2 +1,2 @@
 import "./main.scss";
-export { default as Main } from "./main.hbs?raw";
+export { default as main } from "./main.hbs?raw";

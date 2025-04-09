@@ -1,2 +1,2 @@
 import "./profileField.scss";
-export { default as ProfileField } from "./profileField.hbs?raw";
+export { default as profileField } from "./profileField.hbs?raw";

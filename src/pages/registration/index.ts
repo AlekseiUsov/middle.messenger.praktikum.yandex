@@ -1,2 +1,2 @@
 import "./registration.scss";
-export { default as Registration } from "./registration.hbs?raw";
+export { default as registration } from "./registration.hbs?raw";
