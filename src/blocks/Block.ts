@@ -47,15 +47,15 @@ class Block {
     }
   }
 
-  // private _removeEvents(): void {
-  //   const { events } = this.props;
-  //   if (events) {
-  //     Object.keys(events).forEach((eventName) => {
-  //       if (this._element)
-  //         this._element.removeEventListener(eventName, events[eventName]);
-  //     });
-  //   }
-  // }
+  private _removeEvents(): void {
+    const { events } = this.props;
+    if (events) {
+      Object.keys(events).forEach((eventName) => {
+        if (this._element)
+          this._element.removeEventListener(eventName, events[eventName]);
+      });
+    }
+  }
 
   private _init() {
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
@@ -116,6 +116,7 @@ class Block {
     if (this._element && newElement) {
       this._element.replaceWith(newElement);
     }
+    this._removeEvents();
     this._element = newElement;
     this._addEvents();
   }
