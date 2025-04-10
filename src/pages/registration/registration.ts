@@ -1,8 +1,9 @@
+import { Block } from "../../blocks";
 import { registration } from "./index";
-import Block from "../../blocks/Block";
-import { Button, Link, InputField } from "../../components";
+import { Button, Link, InputField, Error } from "../../components";
 import { formFiels, Patters, ValidateFormMessages } from "../../types";
-import { validateForm } from "../../utils/validateFields/vilidateFiels";
+import { validateForm, getFormValues } from "../../utils";
+import { AuthController } from "../../contlollers";
 
 export class Registration extends Block {
   constructor() {
@@ -102,6 +103,9 @@ export class Registration extends Block {
         text: "Войти",
         href: "/",
       }),
+      Error: new Error({
+        text: "",
+      }),
     });
   }
 
@@ -120,7 +124,7 @@ export class Registration extends Block {
     }
   }
 
-  checkValidationAllFields() {
+  async checkValidationAllFields() {
     const allFiels = Object.keys(this.children);
     const errors = validateForm(this.getContent());
     for (const fiels of allFiels) {
@@ -134,6 +138,30 @@ export class Registration extends Block {
           ...this.children[fiels].props,
           error: false,
         });
+      }
+    }
+    if (!errors.length) {
+      const data = getFormValues(this.getContent());
+      const formValues = {
+        email: data.email,
+        login: data.login,
+        first_name: data.first_name,
+        second_name: data.second_name,
+        phone: data.phone,
+        password: data.password,
+      };
+      const auth = await AuthController.singUp(formValues);
+      if (auth?.reason) {
+        if (auth.reason) {
+          this.children["Error"].setProps({
+            text: auth.reason,
+          });
+          setTimeout(() => {
+            this.children["Error"].setProps({
+              text: "",
+            });
+          }, 3000);
+        }
       }
     }
   }

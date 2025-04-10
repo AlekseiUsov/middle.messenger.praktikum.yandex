@@ -1,11 +1,16 @@
 .profile-avatar {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 150px;
+  height: 150px;
   background-color: var(--grey);
   border-radius: 50%;
 
+  img {
+    border-radius: 50%;
+  }
+
   &__userName {
+    text-align: center;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

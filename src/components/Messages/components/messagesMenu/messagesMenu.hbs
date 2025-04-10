@@ -1,0 +1,16 @@
+<div class="menu">
+  {{{MenuButton}}}
+  {{#if isMenuOpen}}
+    <ul class="menu__list">
+      {{{MenuItemAdd}}}
+      {{{MenuItemRemove}}}
+      {{{MenuItemRemoveChat}}}
+    </ul>
+  {{/if}}
+  {{#if isShowMenuModalAddUser}}
+    {{{MenuModalAddUser}}}
+  {{/if}}
+  {{#if isShowMenuModalRemoveUser}}
+    {{{MenuModalRemoveUser}}}
+  {{/if}}
+</div>

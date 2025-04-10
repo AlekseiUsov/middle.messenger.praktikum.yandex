@@ -1,6 +1,6 @@
-import { formFiels, TFormValues } from "../../types/formFiels";
+import { formFiels } from "../../types/formFiels";
 
-const formatInputName = (name: string) => {
+export const formatInputName = (name: string) => {
   const result = [];
   const arr = name.split("_");
   for (const el of arr) {
@@ -24,11 +24,21 @@ export const validateForm = (element: HTMLElement) => {
 };
 
 export const getFormValues = (element: HTMLElement) => {
-  const formValues: TFormValues = {};
+  const formValues: Record<string, string> = {};
   const fieldsInput = element.querySelectorAll("input");
   for (const input of fieldsInput) {
-    formValues[input.name as formFiels] = input.value;
+    formValues[input.name] = input.value;
   }
-  console.log(formValues);
+
   return formValues;
+};
+
+export const createFileForm = () => {
+  const input = document.querySelectorAll(
+    "input[type=file]"
+  )[0] as HTMLInputElement;
+  const file = input.files![0];
+  const formdata = new FormData();
+  formdata.append("avatar", file);
+  return formdata;
 };
