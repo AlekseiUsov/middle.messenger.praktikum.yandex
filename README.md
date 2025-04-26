@@ -22,3 +22,10 @@ localhost:3000/registration - регистрация
 localhost:3000/profile - профиль
 localhost:3000/notFound - 404
 localhost:3000/error - 500
+
+### Sprint 2
+
+Внедрил базовый класс Block и EventBus
+Добавил на страницах SignIn, Registration, Profile валидацию поле и логирование всех полей по ключам и значения
+Добавил класс HTTPTransport для работы с запросами
+Добавил ESlint и Stylelint Airbnb

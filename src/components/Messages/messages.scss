@@ -1,0 +1,24 @@
+.messages {
+  display: block;
+  padding: 0 12px;
+
+  &__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-grey);
+  }
+
+  &__options {
+    padding-right: 12px;
+  }
+
+  &__list {
+    height: calc(100vh - 130px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--light-grey);
+  }
+}

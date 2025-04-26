@@ -17,6 +17,7 @@
     height: 100%;
     border-right: 1px solid var(--grey);
     cursor: pointer;
+
     svg {
       transform: rotate(180deg);
     }
@@ -28,6 +29,7 @@
     align-items: center;
     justify-content: center;
     width: 510px;
+
     > button {
       margin-top: 60px;
       width: 280px;
@@ -52,6 +54,7 @@
 
   &__menu-item {
     padding: 12px 0;
+
     &:not(:last-of-type) {
       border-bottom: 1px solid var(--light-grey);
     }

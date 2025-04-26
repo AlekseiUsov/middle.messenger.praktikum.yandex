@@ -1,13 +1,14 @@
-export { Chat } from "./chat";
-export { Chats } from "./chats";
-export { CurrentChat } from "./currentChat";
-export { Send } from "./send";
-export { SendIcon } from "./send/sendIcon";
+export { Chat } from "./chats/chat/chat";
+export { Chats } from "./chats/chats";
+export { ChatList } from "./chats/chatList/chatList";
+export { Messages } from "./Messages/messages";
+export { Send } from "./send/send";
 // ui
-export { Input } from "./ui/input";
-export { Link } from "./ui/link";
-export { Button } from "./ui/button";
-export { Avatar } from "./ui/avatar";
-export { ProfileAvatar } from "./ui/profileAvatar";
-export { ProfileField } from "./ui/profileField";
-export { Search } from "./ui/search";
+export { Input } from "./ui/inputField//Input/input";
+export { InputField } from "./ui/inputField/inputField";
+export { Link } from "./ui/link/link";
+export { Button } from "./ui/button/button";
+export { Avatar } from "./ui/avatar/avatar";
+export { ProfileAvatar } from "./ui/profileAvatar/profileAvatar";
+export { ProfileField } from "./ui/profileField/profileField";
+export { Search } from "./ui/search/search";

@@ -1,1 +1,1 @@
-export { default as SendIcon } from "./sendIcon.hbs?raw";
+export { default as sendIcon } from "./sendIcon.hbs?raw";

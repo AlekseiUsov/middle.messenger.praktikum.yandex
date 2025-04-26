@@ -1,0 +1,7 @@
+<div class="message">
+  {{#if firstMassage}}<div class="message__date">{{date}}</div>{{/if}}
+  <div class="message__text {{#if isYou}}you{{else}}interlocutor{{/if}}">
+    {{#if photo}}<img src={{photo}} alt="{{photoalt}}">{{else}}{{message}}{{/if}}
+    {{message}}
+  </div>
+</div>

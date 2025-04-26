@@ -1,14 +1,32 @@
 .profile-field {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid var(--light-grey);
   padding: 6px;
+
   > label {
     font-weight: 500;
   }
+
   > input {
     text-align: right;
     color: var(--dark-grey);
   }
+}
+
+.error {
+  > input {
+    color: var(--red);
+  }
+}
+
+.errorText {
+  bottom: -10px;
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  font-size: 8px;
+  color: var(--red);
 }
