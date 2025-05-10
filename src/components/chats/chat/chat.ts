@@ -1,13 +1,13 @@
 import Block from "../../../blocks/Block";
 import { chat } from "./index";
-import { IProps } from "./types";
+import { IChatProps } from "./types";
 
 export class Chat extends Block {
-  constructor(props: IProps) {
+  constructor(props: IChatProps) {
     super({
       isYou: props.isYou,
       message: props.message,
-      userName: props.userName,
+      title: props.title,
       when: props.when,
       newMessage: props.newMessages,
     });

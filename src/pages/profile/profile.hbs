@@ -1,37 +1,25 @@
 <div class="profile">
-  <button class="profile__back" type="button">
-    {{{SendIcon}}}
-  </button>
+  {{{BackButton}}}
   <div class="profile__inner">
     {{{ProfileAvatar}}}
     <form class="profile__form">
-      {{#if isChangePassword}}
-        {{{OldPassword}}}
-        {{{Password}}}
-        {{{PasswordTwo}}}
-      {{else}}
-        {{{Email}}}
-        {{{Login}}}
-        {{{FirstName}}}
-        {{{SecondName}}}
-        {{{DisplayName}}}
-        {{{Phone}}}
-      {{/if}}
+      {{{Email}}}
+      {{{Login}}}
+      {{{FirstName}}}
+      {{{SecondName}}}
+      {{{DisplayName}}}
+      {{{Phone}}}
     </form>
-    {{#if isEditing}}
-      {{{Save}}}
-    {{else}}
-      <ul class="profile__menu">
-        <li class="profile__menu-item">
-          {{{ChangeData}}}
-        </li>
-        <li class="profile__menu-item">
-          {{{ChangePassword}}}
-        </li>
-        <li class="profile__menu-item">
-          {{{Exit}}}
-        </li>
-      </ul>
-    {{/if}}
+    <ul class="profile__menu">
+      <li class="profile__menu-item">
+        {{{ChangeData}}}
+      </li>
+      <li class="profile__menu-item">
+        {{{ChangePassword}}}
+      </li>
+      <li class="profile__menu-item">
+        {{{Exit}}}
+      </li>
+    </ul>
   </div>
 </div>

@@ -6,6 +6,7 @@ import {
   validateForm,
 } from "../../utils/validateFields/vilidateFiels";
 import { formFiels, Patters, ValidateFormMessages } from "../../types";
+import authController from "../../contlollers/authController/authController";
 
 export class SignIn extends Block {
   constructor() {
@@ -66,6 +67,7 @@ export class SignIn extends Block {
   checkValidationAllFields() {
     const allFiels = Object.keys(this.children);
     const errors = validateForm(this.getContent());
+    const data = getFormValues(this.getContent());
     for (const fiels of allFiels) {
       if (errors.includes(fiels as formFiels)) {
         this.children[fiels].setProps({
@@ -78,6 +80,10 @@ export class SignIn extends Block {
           error: false,
         });
       }
+    }
+
+    if (!errors.length) {
+      authController.singIn(data);
     }
   }
 

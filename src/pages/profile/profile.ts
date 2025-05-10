@@ -1,61 +1,30 @@
 import { profile } from "./index";
 import Block from "../../blocks/Block";
 import { Button, Link, ProfileAvatar, ProfileField } from "../../components";
-import { IProps } from "./types";
-import { formFiels, Patters, ValidateFormMessages } from "../../types";
-import { validateForm } from "../../utils/validateFields/vilidateFiels";
-import { SendIcon } from "../../components/send/sendIcon/sendIcon";
+import { Patters, ValidateFormMessages } from "../../types";
+import { createFileForm } from "../../utils/validateFields/vilidateFiels";
+import userController from "../../contlollers/userController/userController";
+import { AuthApi } from "../../api/AuthApi/AuthApi";
+import router from "../../router/router";
+import { BackButton } from "../../components/ui/backButton/backButton";
 
 export class Profile extends Block {
-  constructor(props: IProps) {
+  constructor() {
     super({
-      isChangePassword: props.isChangePassword,
-      isEditing: props.isEditing,
-      username: props.userName,
-      SendIcon: new SendIcon({}),
+      BackButton: new BackButton({
+        events: {
+          click: () => {
+            router.go("/messenger");
+          },
+        },
+      }),
       ProfileAvatar: new ProfileAvatar({
-        userName: "Паша",
-      }),
-      OldPassword: new ProfileField({
-        label: "Старый пароль",
-        type: "password",
-        id: "oldPassword",
-        name: "oldPassword",
-        value: "•••••••••",
-        disabled: !props.isEditing,
-        pattern: Patters.Password,
-        errorText: ValidateFormMessages.Password,
-        error: false,
+        userName: "",
         events: {
-          blur: () => this.checkValidation("OldPassword" as formFiels),
-        },
-      }),
-      Password: new ProfileField({
-        label: "Новый пароль",
-        type: "password",
-        id: "password",
-        name: "password",
-        value: "•••••••••",
-        disabled: !props.isEditing,
-        pattern: Patters.Password,
-        errorText: ValidateFormMessages.Password,
-        error: false,
-        events: {
-          blur: () => this.checkValidation("Password" as formFiels),
-        },
-      }),
-      PasswordTwo: new ProfileField({
-        label: "Повторите новый пароль",
-        type: "password",
-        id: "password_two",
-        name: "password_two",
-        value: "•••••••••",
-        disabled: !props.isEditing,
-        pattern: Patters.Password,
-        errorText: ValidateFormMessages.Password,
-        error: false,
-        events: {
-          blur: () => this.checkValidation("PasswordTwo" as formFiels),
+          input: () => {
+            const formdata = createFileForm();
+            userController.changeAvatar(formdata);
+          },
         },
       }),
       Email: new ProfileField({
@@ -63,101 +32,86 @@ export class Profile extends Block {
         type: "email",
         id: "email",
         name: "email",
-        value: "pochta@yandex.ru",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.Email,
         errorText: ValidateFormMessages.Email,
         error: false,
-        events: {
-          blur: () => this.checkValidation("Email" as formFiels),
-        },
       }),
       Login: new ProfileField({
         label: "Логин",
         type: "text",
         id: "login",
         name: "login",
-        value: "login_1990",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.Login,
         errorText: ValidateFormMessages.Login,
         error: false,
-        events: {
-          blur: () => this.checkValidation("Login" as formFiels),
-        },
       }),
       FirstName: new ProfileField({
         label: "Имя",
         type: "text",
         id: "first_name",
         name: "first_name",
-        value: "Витя",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.FirstNameOrSecondName,
         errorText: ValidateFormMessages.FirstNameOrSecondName,
         error: false,
-        events: {
-          blur: () => this.checkValidation("FirstName" as formFiels),
-        },
       }),
       SecondName: new ProfileField({
         label: "Фамилия",
         type: "text",
         id: "second_name",
         name: "second_name",
-        value: "Степанов",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.FirstNameOrSecondName,
         errorText: ValidateFormMessages.FirstNameOrSecondName,
         error: false,
-        events: {
-          blur: () => this.checkValidation("SecondName" as formFiels),
-        },
       }),
       DisplayName: new ProfileField({
         label: "Имя в чате",
         type: "text",
         id: "display_name",
         name: "display_name",
-        value: "Витек",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.FirstNameOrSecondName,
         errorText: ValidateFormMessages.FirstNameOrSecondName,
         error: false,
-        events: {
-          blur: () => this.checkValidation("DisplayName" as formFiels),
-        },
       }),
       Phone: new ProfileField({
         label: "Телефон",
         type: "tel",
         id: "phone",
         name: "phone",
-        value: "+7-909-967-30-30",
-        disabled: !props.isEditing,
+        value: "",
+        disabled: true,
         pattern: Patters.Phone,
         errorText: ValidateFormMessages.Phone,
         error: false,
-        events: {
-          blur: () => this.checkValidation("Phone" as formFiels),
-        },
-      }),
-      Save: new Button({
-        text: "Сохранить",
-        type: "submit",
-        events: {
-          click: () => this.checkValidationAllFields(),
-        },
       }),
       ChangeData: new Button({
         text: "Изменить данные",
         type: "button",
         isSecondary: true,
+        events: {
+          click: () => {
+            router.go("/change-userdata");
+          },
+        },
       }),
       ChangePassword: new Button({
-        text: "Изменить данные",
+        text: "Изменить пароль",
         type: "button",
         isSecondary: true,
+        events: {
+          click: () => {
+            router.go("/change-password");
+          },
+        },
       }),
       Exit: new Link({
         text: "Выход",
@@ -167,38 +121,45 @@ export class Profile extends Block {
     });
   }
 
-  checkValidation(name: formFiels) {
-    const errors = validateForm(this.getContent());
+  async loadUserData() {
+    const api = new AuthApi();
+    const res = await api.fetchUser();
+    const user = await JSON.parse(res.response);
 
-    if (errors.includes(name)) {
-      this.children[name].setProps({
-        ...this.children[name].props,
-        error: true,
-      });
-    } else {
-      this.children[name].setProps({
-        ...this.children[name].props,
-        error: false,
-      });
-    }
+    this.children["ProfileAvatar"].setProps({
+      avatar: user.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`
+        : null,
+      userName: user.first_name,
+    });
+
+    this.children["FirstName"].setProps({
+      value: user.first_name,
+    });
+
+    this.children["SecondName"].setProps({
+      value: user.second_name,
+    });
+
+    this.children["Email"].setProps({
+      value: user.email,
+    });
+
+    this.children["Login"].setProps({
+      value: user.login,
+    });
+
+    this.children["DisplayName"].setProps({
+      value: user.display_name,
+    });
+
+    this.children["Phone"].setProps({
+      value: user.phone,
+    });
   }
 
-  checkValidationAllFields() {
-    const allFiels = Object.keys(this.children);
-    const errors = validateForm(this.getContent());
-    for (const fiels of allFiels) {
-      if (errors.includes(fiels as formFiels)) {
-        this.children[fiels].setProps({
-          ...this.children[fiels].props,
-          error: true,
-        });
-      } else {
-        this.children[fiels].setProps({
-          ...this.children[fiels].props,
-          error: false,
-        });
-      }
-    }
+  componentDidMount(): void {
+    this.loadUserData();
   }
 
   render(): string {

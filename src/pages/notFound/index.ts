@@ -1,2 +1,2 @@
 import "./notFound.scss";
-export { default as NotFound } from "./notFound.hbs?raw";
+export { default as notFound } from "./notFound.hbs?raw";
