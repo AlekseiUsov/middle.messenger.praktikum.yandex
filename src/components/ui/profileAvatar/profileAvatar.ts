@@ -6,6 +6,7 @@ export class ProfileAvatar extends Block {
   constructor(props: TProps) {
     super({ ...props });
   }
+
   render() {
     return profileAvatar;
   }

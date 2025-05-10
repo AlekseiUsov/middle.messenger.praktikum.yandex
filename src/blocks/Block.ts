@@ -70,6 +70,7 @@ class Block {
   dispatchComponentDidMount() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
+
   dispatchComponentDidUpdate() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDU);
   }

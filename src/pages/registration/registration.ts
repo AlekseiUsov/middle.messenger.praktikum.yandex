@@ -2,7 +2,11 @@ import { registration } from "./index";
 import Block from "../../blocks/Block";
 import { Button, Link, InputField } from "../../components";
 import { formFiels, Patters, ValidateFormMessages } from "../../types";
-import { validateForm } from "../../utils/validateFields/vilidateFiels";
+import {
+  validateForm,
+  getFormValues,
+} from "../../utils/validateFields/vilidateFiels";
+import authController from "../../contlollers/authController/authController";
 
 export class Registration extends Block {
   constructor() {
@@ -135,6 +139,18 @@ export class Registration extends Block {
           error: false,
         });
       }
+    }
+    if (!errors.length) {
+      const data = getFormValues(this.getContent());
+      const formValues = {
+        email: data.email,
+        login: data.login,
+        first_name: data.first_name,
+        second_name: data.second_name,
+        phone: data.phone,
+        password: data.password,
+      };
+      authController.singUp(formValues);
     }
   }
 
