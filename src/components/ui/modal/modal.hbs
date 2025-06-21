@@ -1,0 +1,23 @@
+<div class="overlay">
+  <form class="modal">
+    <h3 class="modal__title">
+      {{title}}
+    </h3>
+    {{#if users}}
+      <ul class="users-list">
+        {{#each users}}
+          <li class="user-item">
+            {{this.first_name}} {{this.second_name}} (id: {{this.id}})
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    <div class="modal__input">
+      {{{Input}}}
+    </div>
+    <div class="close">
+      {{{Close}}}
+    </div>
+    {{{Button}}}
+  </form>
+</div>

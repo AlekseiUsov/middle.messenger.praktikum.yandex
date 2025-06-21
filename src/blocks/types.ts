@@ -1,4 +1,4 @@
-import Block from "./Block";
+import { Block } from "./Block";
 
 export type Callback = (...args: unknown[]) => void;
 
@@ -9,6 +9,8 @@ export interface IEvents {
 }
 
 export type TChildren = Record<string, Block>;
+export type TArrayChildren = Record<string, TChildren>;
+
 export type TProps = Record<string, unknown> & {
   events?: Record<string, Callback>;
 };

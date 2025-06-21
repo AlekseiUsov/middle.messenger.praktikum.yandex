@@ -1,15 +1,26 @@
-import Block from "../../../blocks/Block";
+import { Block } from "../../../blocks";
+import { Store, NameEvent } from "../../../store";
+import { Paths } from "../../../store/types";
+import { Avatar } from "../../ui";
 import { chat } from "./index";
-import { IProps } from "./types";
+import { IChatProps } from "./types";
 
 export class Chat extends Block {
-  constructor(props: IProps) {
+  constructor(props: IChatProps) {
     super({
-      isYou: props.isYou,
-      message: props.message,
-      userName: props.userName,
-      when: props.when,
-      newMessage: props.newMessages,
+      title: props.title,
+      id: props.id,
+      Avatar: new Avatar({
+        src: props.avatar,
+      }),
+      events: {
+        click: () =>
+          Store.set(
+            NameEvent.setCurrentChat,
+            Paths.currentChat,
+            this.props.id as number
+          ),
+      },
     });
   }
   render(): string {
