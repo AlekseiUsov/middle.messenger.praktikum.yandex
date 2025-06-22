@@ -4,6 +4,7 @@ import { InputField, Button, Link, Error } from "../../components";
 import { getFormValues, validateForm } from "../../utils";
 import { formFiels, Patters, ValidateFormMessages } from "../../types";
 import { signIn } from "./index";
+import { Router } from "../../router";
 
 export class SignIn extends Block {
   constructor() {
@@ -89,6 +90,9 @@ export class SignIn extends Block {
         password: data.password,
       };
       const res = await AuthController.singIn(formValues);
+      if (res?.reason && res?.reason === "User already in system") {
+        Router.go("/messenger");
+      }
       if (res?.reason) {
         this.children["Error"].setProps({
           text: res.reason,
