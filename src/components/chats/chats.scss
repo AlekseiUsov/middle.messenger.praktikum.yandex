@@ -2,7 +2,7 @@
   padding: 20px 12px;
   border-right: 1px solid var(--grey);
 
-  &__profile {
+  &__button {
     display: flex;
     align-items: center;
     justify-content: end;
@@ -12,9 +12,20 @@
     color: var(--dark-grey);
   }
 
+  &__error {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+    color: var(--red);
+  }
+
   &__list {
     overflow-y: auto;
-    max-height: 100vh;
+    max-height: 600px;
     scrollbar-width: thin;
+  }
+
+  button {
+    margin-bottom: 10px;
   }
 }

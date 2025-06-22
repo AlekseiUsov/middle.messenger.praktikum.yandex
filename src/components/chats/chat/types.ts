@@ -1,7 +1,7 @@
-export interface IProps {
-  userName: string;
-  isYou: boolean;
-  message: string;
-  when: string;
-  newMessages: string;
+export interface IChatProps {
+  avatar?: string;
+  id: number;
+  title: string;
+  created_by: number;
+  unread_count: number;
 }

@@ -1,0 +1,16 @@
+.menu {
+  padding-right: 12px;
+
+  &__list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 20px;
+    background-color: var(--grey);
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+    position: absolute;
+    top: 70px;
+    right: 20px;
+  }
+}

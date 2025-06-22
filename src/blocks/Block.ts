@@ -3,7 +3,7 @@ import { TChildren, TProps, TPropsAndChildren } from "./types";
 import { EventBus } from "./EventBus";
 import { v4 as makeId } from "uuid";
 
-class Block {
+export class Block {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -15,13 +15,16 @@ class Block {
   eventBus: EventBus;
   children: TChildren = {};
   props: TProps = {};
+  lists: Record<string, unknown>;
   _id: string = "";
 
   constructor(propsAndChildren: TPropsAndChildren) {
-    const { props, children } = this._getPropsAndChildren(propsAndChildren);
+    const { props, children, lists } =
+      this._getPropsAndChildren(propsAndChildren);
     this.children = children;
     this._id = makeId();
     this.props = this._makePropsProxy({ ...props, _id: this._id });
+    this.lists = this._makePropsProxy({ ...lists });
     this.eventBus = new EventBus();
     this._registerEvents(this.eventBus);
     this.eventBus.emit(Block.EVENTS.INIT);
@@ -70,6 +73,7 @@ class Block {
   dispatchComponentDidMount() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
+
   dispatchComponentDidUpdate() {
     this.eventBus.emit(Block.EVENTS.FLOW_CDU);
   }
@@ -92,6 +96,8 @@ class Block {
     if (!this._isEqual(this.props, nextProps)) {
       this.props = { ...this.props, ...nextProps };
     }
+    const { children } = this._getPropsAndChildren(this.props);
+    this.children = { ...this.children, ...children };
     this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, this.props);
   };
 
@@ -101,9 +107,11 @@ class Block {
 
   _render() {
     const props = { ...this.props };
+    const tmpId = Math.floor(100000 + Math.random() * 900000);
     Object.entries(this.children).forEach(([key, child]) => {
       props[key] = `<div data-id='${child._id}'></div>`;
     });
+
     const fragment = this._createDocumentElement("template");
     fragment.innerHTML = Handlebars.compile(this.render())(props);
     Object.values(this.children).forEach((child) => {
@@ -112,6 +120,24 @@ class Block {
         stub.replaceWith(child.getContent());
       }
     });
+
+    Object.entries(this.lists).forEach(([, child]) => {
+      const listCont = this._createDocumentElement("template");
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          if (item instanceof Block) {
+            listCont.content.append(item.getContent());
+          } else {
+            listCont.content.append(`${item}`);
+          }
+        });
+        const stub = fragment.content.querySelector(`[data-id="__l_${tmpId}"]`);
+        if (stub) {
+          stub.replaceWith(listCont.content);
+        }
+      }
+    });
+
     const newElement = fragment.content.firstChild as HTMLElement;
     if (this._element && newElement) {
       this._element.replaceWith(newElement);
@@ -145,15 +171,19 @@ class Block {
   private _getPropsAndChildren(propsAndChildren: TPropsAndChildren) {
     const children: TChildren = {};
     const props: TProps = {};
+    const lists: TProps = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
+      } else if (key === "lists") {
+        lists[key] = value;
       } else {
         props[key] = value;
       }
     });
-    return { props, children };
+
+    return { children, props, lists };
   }
 
   _createDocumentElement(tagName: string) {
@@ -163,7 +193,7 @@ class Block {
   }
 
   private _isEqual(oldProps: TProps, newProps: TProps): boolean {
-    return Object.keys(oldProps).every((key) => {
+    return Object.keys(newProps).every((key) => {
       const value1 = oldProps[key];
       const value2 = newProps[key];
 
@@ -179,5 +209,3 @@ class Block {
     this.getContent().style.display = "none";
   }
 }
-
-export default Block;

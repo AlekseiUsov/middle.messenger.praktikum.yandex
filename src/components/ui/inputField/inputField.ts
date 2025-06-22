@@ -1,7 +1,5 @@
-import { inputField } from "./index";
-import Block from "../../../blocks/Block";
-import { Input } from "./Input/input";
-import { TProps } from "../../../blocks/types";
+import { Block, TProps } from "../../../blocks";
+import { inputField, Input } from "./index";
 
 export class InputField extends Block {
   constructor(props: TProps) {

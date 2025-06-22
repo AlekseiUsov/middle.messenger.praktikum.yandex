@@ -13,3 +13,15 @@
   background-color: var(--white);
   color: var(--blue);
 }
+
+.third {
+  text-align: start;
+  height: auto;
+  width: 100%;
+  background-color: var(--white);
+  color: var(--red);
+}
+
+.disabled {
+  background-color: var(--grey);
+}

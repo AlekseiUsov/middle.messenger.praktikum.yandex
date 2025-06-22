@@ -1,4 +1,13 @@
 .main {
-  display: grid;
-  grid-template-columns: 450px 1fr;
+  display: grid !important;
+  grid-template-columns: 320px 1fr;
+  height: 100vh;
+}
+
+.placeholder {
+  height: 100%;
+  background-color: var(--grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
