@@ -5,6 +5,7 @@ import {
   MessagesMenu,
   SendIcon,
   Input,
+  Error,
 } from "../../components";
 import { Block } from "../../blocks";
 import { NameEvent, Store } from "../../store";
@@ -22,6 +23,7 @@ export class Messages extends Block {
       Avatar: new Avatar({}),
       MessagesMenu: new MessagesMenu(),
       SendIcon: new SendIcon({
+        isActive: true,
         events: {
           click: () => {
             this.send();
@@ -33,6 +35,9 @@ export class Messages extends Block {
         name: "message",
         id: "message",
         placeHolder: "введите текст",
+      }),
+      Error: new Error({
+        text: "",
       }),
       MessagesList: new MessagesList({
         messages: [],
@@ -57,14 +62,32 @@ export class Messages extends Block {
 
   send() {
     const fiels = getFormValues(this.getContent());
-    MessagesController.send(fiels.message);
-    this.setCurrentChat();
-    this.setProps({
-      Input: new Input({
-        ...this.children["Input"].props,
-        value: "",
-      }),
-    });
+    if (fiels.message) {
+      MessagesController.send(fiels.message);
+
+      this.setCurrentChat();
+      this.setProps({
+        Input: new Input({
+          ...this.children["Input"].props,
+          value: "",
+        }),
+      });
+    } else {
+      this.setProps({
+        Error: new Error({
+          ...this.children["Error"].props,
+          text: "введите текст",
+        }),
+      });
+    }
+    setTimeout(() => {
+      this.setProps({
+        Error: new Error({
+          ...this.children["Error"].props,
+          text: "",
+        }),
+      });
+    }, 3000);
   }
 
   setMessages() {

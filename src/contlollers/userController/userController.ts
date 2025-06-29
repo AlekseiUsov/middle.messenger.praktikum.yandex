@@ -17,7 +17,7 @@ class Controller {
       const user = await JSON.parse(res.response);
       return user;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -27,7 +27,7 @@ class Controller {
       const user = await JSON.parse(res.response);
       return user;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -37,7 +37,7 @@ class Controller {
       const user = await JSON.parse(res.response);
       return user;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -47,7 +47,7 @@ class Controller {
       const user = await JSON.parse(res.response);
       return user;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 }

@@ -3,6 +3,8 @@ import { SignInFormValues, SignUpFormValues } from "../../api";
 import { Router } from "../../router";
 import { NameEvent, Paths, Store } from "../../store";
 
+export const BASE_RESOURSES_URL = "https://ya-praktikum.tech/api/v2/resources";
+
 class Controller {
   private api;
   constructor() {
@@ -19,7 +21,7 @@ class Controller {
         return user;
       }
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -33,7 +35,7 @@ class Controller {
         return auth;
       }
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -47,7 +49,7 @@ class Controller {
         return user;
       }
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -59,7 +61,7 @@ class Controller {
 
       return user;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 }

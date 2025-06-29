@@ -27,7 +27,7 @@ class ChatWebSocket {
           Store.set(NameEvent.getMessagesForChat, Paths.chatMessages, data);
         }
       } catch (e) {
-        throw e;
+        console.log(e);
       }
     };
   }

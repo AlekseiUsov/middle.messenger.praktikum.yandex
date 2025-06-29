@@ -9,7 +9,11 @@ import { Patters, ValidateFormMessages } from "../../types";
 import { createFileForm } from "../../utils";
 import { profile } from "./index";
 import { Router } from "../../router";
-import { AuthController, UserController } from "../../contlollers";
+import {
+  AuthController,
+  BASE_RESOURSES_URL,
+  UserController,
+} from "../../contlollers";
 
 export class Profile extends Block {
   constructor() {
@@ -122,9 +126,7 @@ export class Profile extends Block {
   async loadUserData() {
     const user = await AuthController.fetchUser();
     this.children["ProfileAvatar"].setProps({
-      avatar: user.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`
-        : null,
+      avatar: user.avatar ? `${BASE_RESOURSES_URL}/${user.avatar}` : null,
       userName: user.first_name,
     });
 
@@ -158,7 +160,7 @@ export class Profile extends Block {
     const user = await UserController.changeAvatar(formdata);
 
     this.children["ProfileAvatar"].setProps({
-      avatar: `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`,
+      avatar: `${BASE_RESOURSES_URL}/${user.avatar}`,
     });
   }
 

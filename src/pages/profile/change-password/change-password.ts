@@ -7,7 +7,11 @@ import {
 } from "../../../components";
 import { formFiels, Patters, ValidateFormMessages } from "../../../types";
 import { getFormValues, validateForm, createFileForm } from "../../../utils";
-import { AuthController, UserController } from "../../../contlollers";
+import {
+  AuthController,
+  BASE_RESOURSES_URL,
+  UserController,
+} from "../../../contlollers";
 import { changePasswordGrid } from "./index";
 import { Router } from "../../../router";
 
@@ -158,9 +162,7 @@ export class ChangePassword extends Block {
     const user = await AuthController.fetchUser();
 
     this.children["ProfileAvatar"].setProps({
-      avatar: user.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${user.avatar}`
-        : null,
+      avatar: user.avatar ? `${BASE_RESOURSES_URL}/${user.avatar}` : null,
     });
   }
 

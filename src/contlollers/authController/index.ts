@@ -1,1 +1,1 @@
-export { AuthController } from "./authController";
+export { AuthController, BASE_RESOURSES_URL } from "./authController";

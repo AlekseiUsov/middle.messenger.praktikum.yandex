@@ -21,7 +21,7 @@ export class Search extends Block {
     this.debouncedSetInputValue = debounce(() => {
       const { search } = getFormValues(this.getContent());
       Store.set(NameEvent.filterChats, Paths.searchValue, search as string);
-    }, 500);
+    }, 1000);
   }
 
   render() {
