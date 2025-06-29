@@ -10,15 +10,57 @@
     border-bottom: 1px solid var(--light-grey);
   }
 
-  &__options {
-    padding-right: 12px;
-  }
-
   &__list {
     height: calc(100vh - 130px);
+    overflow-y: auto;
+    scrollbar-width: thin;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     border-bottom: 1px solid var(--light-grey);
+  }
+}
+
+.send {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+
+  &__file-upload {
+    svg {
+      cursor: pointer;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  &__error {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    div {
+      padding: 0;
+    }
+  }
+
+  &__fieldMessage {
+    display: flex;
+    padding: 0 20px;
+    height: 32px;
+    width: 100%;
+    border-radius: 30px;
+    background-color: var(--grey);
+
+    input[type="text"] {
+      width: 100%;
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
   }
 }

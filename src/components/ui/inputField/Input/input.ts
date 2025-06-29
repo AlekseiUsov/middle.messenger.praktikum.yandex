@@ -1,5 +1,4 @@
-import Block from "../../../../blocks/Block";
-import { TProps } from "../../../../blocks/types";
+import { Block, TProps } from "../../../../blocks";
 import { input } from "./index";
 
 export class Input extends Block {

@@ -1,11 +1,29 @@
+import { Block } from "../../../blocks";
+import { Store, NameEvent, Paths } from "../../../store";
+import { debounce, getFormValues } from "../../../utils";
+import { Input } from "../inputField";
 import { search } from "./index";
-import Block from "../../../blocks/Block";
-import { TProps } from "../../../blocks/types";
 
 export class Search extends Block {
-  constructor(props: TProps) {
-    super({ ...props });
+  private debouncedSetInputValue: () => void;
+
+  constructor({}) {
+    super({
+      Input: new Input({
+        type: "search",
+        id: "search",
+        name: "search",
+        events: {
+          input: () => this.debouncedSetInputValue(),
+        },
+      }),
+    });
+    this.debouncedSetInputValue = debounce(() => {
+      const { search } = getFormValues(this.getContent());
+      Store.set(NameEvent.filterChats, Paths.searchValue, search as string);
+    }, 1000);
   }
+
   render() {
     return search;
   }
