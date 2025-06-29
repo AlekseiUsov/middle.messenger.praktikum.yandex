@@ -48,8 +48,9 @@ export class MessagesMenu extends Block {
         title: "Добавить пользователя",
         Close: new Button({
           text: "x",
+          type: "button",
           events: {
-            click: (e) => this.closeModal(e),
+            click: () => this.closeModal(),
           },
         }),
         Input: new InputField({
@@ -63,7 +64,7 @@ export class MessagesMenu extends Block {
         }),
         Button: new Button({
           text: "добавить",
-          type: "submit",
+          type: "button",
           events: {
             click: (e) => this.checkValidation(e),
           },
@@ -72,22 +73,23 @@ export class MessagesMenu extends Block {
       MenuModalRemoveUser: new Modal({
         Close: new Button({
           text: "x",
+          type: "button",
           events: {
-            click: (e) => this.closeModal(e),
+            click: () => this.closeModal(),
           },
         }),
         Input: new InputField({
           type: "text",
           id: "id",
           name: "id",
-          value: "",
           pattern: Patters.Id,
+          value: "",
           errorText: ValidateFormMessages.Id,
           placeholder: "Добавьте id пользователя",
         }),
         Button: new Button({
           text: "удалить",
-          type: "submit",
+          type: "button",
           events: {
             click: (e) => this.checkValidation(e),
           },
@@ -104,68 +106,112 @@ export class MessagesMenu extends Block {
     });
   }
 
-  closeModal(e: unknown) {
-    if (e instanceof MouseEvent) {
-      e.preventDefault();
+  closeModal() {
+    if (this.props.isShowMenuModalAddUser) {
+      this.setProps({
+        ...this.props,
+        isShowMenuModalAddUser: false,
+      });
+    }
 
-      if (this.props.isShowMenuModalAddUser) {
-        this.setProps({
-          ...this.props,
-          isShowMenuModalAddUser: false,
-        });
-      }
-
-      if (this.props.isShowMenuModalRemoveUser) {
-        this.setProps({
-          ...this.props,
-          isShowMenuModalRemoveUser: false,
-        });
-      }
+    if (this.props.isShowMenuModalRemoveUser) {
+      this.setProps({
+        ...this.props,
+        isShowMenuModalRemoveUser: false,
+      });
     }
   }
 
-  checkValidation(e: unknown) {
+  async checkValidation(e: unknown) {
     if (e instanceof MouseEvent) {
       e.preventDefault();
+
+      const { id } = getFormValues(this.getContent());
       const errors = validateForm(this.getContent());
 
-      if (errors.length) {
-        if (this.props.isShowMenuModalAddUser) {
+      const formValues = {
+        users: [Number(id)],
+        chatId: Store.state.currentChat as number,
+      };
+
+      if (this.props.isShowMenuModalAddUser && (errors.length || !id)) {
+        this.children["MenuModalAddUser"].children["Input"].setProps({
+          ...this.children["MenuModalAddUser"].children["Input"].props,
+          error: true,
+        });
+
+        setTimeout(
+          () =>
+            this.children["MenuModalAddUser"].children["Input"].setProps({
+              ...this.children["MenuModalAddUser"].children["Input"].props,
+              error: false,
+            }),
+          3000
+        );
+      }
+
+      if (this.props.isShowMenuModalAddUser && !errors.length && id) {
+        const res = await ChatsController.addUserToChat(formValues);
+
+        if (res !== "OK") {
           this.children["MenuModalAddUser"].children["Input"].setProps({
             ...this.children["MenuModalAddUser"].children["Input"].props,
             error: true,
+            errorText: res,
           });
-        }
 
-        if (this.props.isShowMenuModalRemoveUser) {
-          this.children["MenuModalRemoveUser"].children["Input"].setProps({
-            ...this.children["MenuModalRemoveUser"].children["Input"].props,
-            error: true,
-          });
+          setTimeout(
+            () =>
+              this.children["MenuModalAddUser"].children["Input"].setProps({
+                ...this.children["MenuModalAddUser"].children["Input"].props,
+                error: false,
+                errorText: ValidateFormMessages.Id,
+              }),
+            3000
+          );
+        } else {
+          this.closeModal();
         }
       }
 
-      if (!errors.length) {
-        const data = getFormValues(this.getContent());
-
-        this.children["MenuModalAddUser"].children["Input"].setProps({
-          ...this.children["MenuModalAddUser"].children["Input"].props,
-          error: false,
+      if (this.props.isShowMenuModalRemoveUser && (errors.length || !id)) {
+        this.children["MenuModalRemoveUser"].children["Input"].setProps({
+          ...this.children["MenuModalRemoveUser"].children["Input"].props,
+          error: true,
         });
 
-        const formValues = {
-          users: [Number(data.id)],
-          chatId: Store.state.currentChat as number,
-        };
+        setTimeout(
+          () =>
+            this.children["MenuModalRemoveUser"].children["Input"].setProps({
+              ...this.children["MenuModalRemoveUser"].children["Input"].props,
+              error: false,
+            }),
+          3000
+        );
+      }
 
-        if (this.props.isShowMenuModalAddUser) {
-          ChatsController.addUserToChat(formValues);
-        }
+      if (this.props.isShowMenuModalRemoveUser && !errors.length && id) {
+        const res = await ChatsController.deleteUserFromChat(formValues);
 
-        if (this.props.isShowMenuModalRemoveUser) {
-          ChatsController.deleteUserFromChat(formValues);
+        if (res !== "OK") {
+          this.children["MenuModalRemoveUser"].children["Input"].setProps({
+            ...this.children["MenuModalAddUser"].children["Input"].props,
+            error: true,
+            errorText: res,
+          });
+
+          setTimeout(
+            () =>
+              this.children["MenuModalRemoveUser"].children["Input"].setProps({
+                ...this.children["MenuModalRemoveUser"].children["Input"].props,
+                error: false,
+                errorText: ValidateFormMessages.Id,
+              }),
+            3000
+          );
+        } else {
+          this.closeModal();
         }
-        this.closeModal(e);
       }
     }
   }

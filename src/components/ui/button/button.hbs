@@ -1,9 +1,10 @@
-<button class='primary {{#if isSecondary}}secondary{{/if}} 
-{{#if isThird}}
-  third
-{{/if}}
-{{#if isDisabled}}disabled{{/if}}' 
-{{#if isDisabled}}disabled{{/if}}
-type={{type}} >
+<button 
+  class='primary
+    {{#if isSecondary}}secondary{{/if}} 
+    {{#if isThird}}third{{/if}}
+    {{#if isDisabled}}disabled{{/if}}' 
+  {{#if isDisabled}}disabled{{/if}}
+  type={{type}}
+>
   {{text}}
 </button>

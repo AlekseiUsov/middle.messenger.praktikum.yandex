@@ -6,12 +6,10 @@ export class MessagesList extends Block {
   constructor({ messages }: TMessagesProps) {
     super(
       Object.fromEntries(
-        (messages.reverse() || []).map(
-          (message: IMessageProps, index: number) => [
-            `Message_${index + 1}`,
-            new Message(message),
-          ]
-        )
+        (messages || []).map((message: IMessageProps, index: number) => [
+          `Message_${index + 1}`,
+          new Message(message),
+        ])
       )
     );
   }

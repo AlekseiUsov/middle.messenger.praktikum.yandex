@@ -9,7 +9,7 @@ import {
 } from "../../components";
 import { ChatsController } from "../../contlollers";
 import { NameEvent, Paths, Store } from "../../store";
-import { getFormValues, validateForm } from "../../utils";
+import { getFormValues } from "../../utils";
 import { chats } from "./index";
 import { IChatsProps } from "./types";
 
@@ -21,8 +21,9 @@ export class Chats extends Block {
       MenuModalAddChatUser: new Modal({
         Close: new Button({
           text: "x",
+          type: "button",
           events: {
-            click: (e) => this.closeModal(e),
+            click: () => this.closeModal(),
           },
         }),
         Input: new InputField({
@@ -33,7 +34,7 @@ export class Chats extends Block {
         }),
         Button: new Button({
           text: "создать чат",
-          type: "submit",
+          type: "button",
           events: {
             click: (e: unknown) => {
               this.createChat(e);
@@ -45,6 +46,7 @@ export class Chats extends Block {
       Search: new Search({}),
       CreateChat: new Button({
         text: "создать чат",
+        type: "button",
         events: {
           click: () => {
             this.showCreateChatModal();
@@ -57,15 +59,11 @@ export class Chats extends Block {
     });
   }
 
-  closeModal(e: unknown) {
-    if (e instanceof MouseEvent) {
-      e.preventDefault();
-
-      this.setProps({
-        ...this.props,
-        isShowCreateChatModal: false,
-      });
-    }
+  closeModal() {
+    this.setProps({
+      ...this.props,
+      isShowCreateChatModal: false,
+    });
   }
 
   showCreateChatModal() {
@@ -78,27 +76,23 @@ export class Chats extends Block {
   async createChat(e: unknown) {
     if (e instanceof MouseEvent) {
       e.preventDefault();
-      const errors = validateForm(this.getContent());
 
-      if (errors.length) {
+      const { title } = getFormValues(this.getContent());
+
+      const formValues = {
+        title,
+      };
+
+      const newChat = await ChatsController.createChat(formValues);
+      if (!newChat.reason) {
+        Store.set(NameEvent.filterChats, Paths.searchValue, "");
+        this.closeModal();
+      } else {
         this.children["MenuModalAddChatUser"].children["Input"].setProps({
           ...this.children["MenuModalAddChatUser"].children["Input"].props,
           error: true,
+          errorText: newChat.reason,
         });
-      }
-
-      if (!errors.length) {
-        const data = getFormValues(this.getContent());
-
-        const formValues = {
-          title: data.title,
-        };
-
-        const newChat = await ChatsController.createChat(formValues);
-        if (!newChat.reason) {
-          Store.set(NameEvent.filterChats, Paths.searchValue, "");
-        }
-        this.closeModal(e);
       }
     }
   }

@@ -13,7 +13,7 @@ class Controller {
       const chats = await JSON.parse(res.response);
       return chats;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -23,7 +23,7 @@ class Controller {
       const users = await JSON.parse(res.response);
       return users;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -31,10 +31,9 @@ class Controller {
     try {
       const res = await this.api.createChat(data);
       const newChat = await JSON.parse(res.response);
-      console.log(newChat);
       return newChat;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -44,7 +43,7 @@ class Controller {
       const { token } = await JSON.parse(res.response);
       return token;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 
@@ -78,7 +77,7 @@ class Controller {
       const deleteUser = res.response;
       return deleteUser;
     } catch (e: unknown) {
-      throw e;
+      console.log(e);
     }
   }
 }
