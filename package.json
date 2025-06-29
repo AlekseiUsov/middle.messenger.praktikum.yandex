@@ -13,7 +13,7 @@
     "preview": "vite preview --port 3000",
     "start": "npm run build && npm run preview",
     "lint": "eslint .  --ext .ts",
-    "lint:fix": "eslint . --fix --ext .ts,.js"
+    "lint:fix": "eslint --fix . && stylelint --fix \"**/*.{css,scss}\" && prettier --write ."
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.27.0",

@@ -1,0 +1,16 @@
+.backButton {
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 100%;
+  border-right: 1px solid var(--grey);
+  cursor: pointer;
+
+  svg {
+    transform: rotate(180deg);
+  }
+}

@@ -2,6 +2,10 @@
   <label for="{{id}}">
     {{label}}
   </label>
-  {{{Input}}}
+  {{#if disabled}}
+  <input id="{{id}}" name="{{name}}" disabled {{#if value}}value="{{value}}"{{/if}} >
+  {{else}}
+  <input type="{{type}}" id="{{id}}" name="{{name}}" pattern="{{pattern}}" {{#if value}}value="{{value}}"{{/if}} >
+{{/if}}
   {{#if error}} <div class="errorText">{{errorText}}</div>{{/if}}
 </div>

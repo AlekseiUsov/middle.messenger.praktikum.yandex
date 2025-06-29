@@ -1,23 +1,22 @@
-import { Registration, Main, Profile, SignIn } from "./pages/index";
-
-const app = document.getElementById("app") as HTMLElement;
-
-const pages = {
-  main: new Main(),
-  signin: new SignIn(),
-  registration: new Registration(),
-  profile: new Profile({
-    userName: "Витя",
-    isChangePassword: true,
-    isEditing: true,
-  }),
-};
+import {
+  Registration,
+  Main,
+  Profile,
+  SignIn,
+  NotFound,
+  Error,
+  ChangePassword,
+  ChangeUserData,
+} from "./pages/index";
+import { Router } from "./router";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
-  if (path === "/") {
-    app.replaceChildren(pages.main.getContent());
-  }
-  const route = path.slice(1) as keyof typeof pages;
-  app.replaceChildren(pages[route].getContent());
+  Router.use("/", new SignIn());
+  Router.use("/messenger", new Main());
+  Router.use("/sign-up", new Registration());
+  Router.use("/settings", new Profile());
+  Router.use("/not-found", new NotFound());
+  Router.use("*", new Error());
+  Router.use("/change-password", new ChangePassword());
+  Router.use("/change-userdata", new ChangeUserData()).start();
 });
