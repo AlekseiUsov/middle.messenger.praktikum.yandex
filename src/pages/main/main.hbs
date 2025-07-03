@@ -1,4 +1,10 @@
 <main class="main">
   {{{Chats}}}
-  {{{Messages}}}
+  {{#if isOpenChat}}
+    {{{Messages}}}
+  {{else}}
+    <div class="placeholder">
+      Выберите чат, чтобы отправить сообщение
+    </div>
+  {{/if}}
 </main>

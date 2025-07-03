@@ -1,0 +1,39 @@
+.message {
+  display: flex;
+
+  &__date {
+    font-size: 10px;
+    color: var(--super-light-grey);
+    margin-right: auto;
+    text-align: center;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__block {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__text {
+    color: var(--black);
+    font-weight: 500;
+    font-size: 12px;
+  }
+}
+
+.you {
+  margin-left: auto;
+}
+
+.interlocutor {
+  margin-right: auto;
+}

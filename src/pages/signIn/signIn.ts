@@ -1,11 +1,10 @@
-import { signIn } from "./index";
-import Block from "../../blocks/Block";
-import { InputField, Button, Link } from "../../components";
-import {
-  getFormValues,
-  validateForm,
-} from "../../utils/validateFields/vilidateFiels";
+import { Block } from "../../blocks";
+import { AuthController } from "../../contlollers";
+import { InputField, Button, Link, Error } from "../../components";
+import { getFormValues, validateForm } from "../../utils";
 import { formFiels, Patters, ValidateFormMessages } from "../../types";
+import { signIn } from "./index";
+import { Router } from "../../router";
 
 export class SignIn extends Block {
   constructor() {
@@ -45,6 +44,9 @@ export class SignIn extends Block {
         text: "Войти",
         href: "/",
       }),
+      Error: new Error({
+        text: "",
+      }),
     });
   }
 
@@ -63,9 +65,11 @@ export class SignIn extends Block {
     }
   }
 
-  checkValidationAllFields() {
+  async checkValidationAllFields() {
     const allFiels = Object.keys(this.children);
     const errors = validateForm(this.getContent());
+    const data = getFormValues(this.getContent());
+
     for (const fiels of allFiels) {
       if (errors.includes(fiels as formFiels)) {
         this.children[fiels].setProps({
@@ -77,6 +81,27 @@ export class SignIn extends Block {
           ...this.children[fiels].props,
           error: false,
         });
+      }
+    }
+
+    if (!errors.length) {
+      const formValues = {
+        login: data.login,
+        password: data.password,
+      };
+      const res = await AuthController.singIn(formValues);
+      if (res?.reason && res?.reason === "User already in system") {
+        Router.go("/messenger");
+      }
+      if (res?.reason) {
+        this.children["Error"].setProps({
+          text: res.reason,
+        });
+        setTimeout(() => {
+          this.children["Error"].setProps({
+            text: "",
+          });
+        }, 3000);
       }
     }
   }
