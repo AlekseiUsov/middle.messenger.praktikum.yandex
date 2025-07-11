@@ -8,6 +8,22 @@ https://www.figma.com/design/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0
 
 npm run dev - режим разработки
 npm run start - сборка и запуск на 3000 порту
+npm run test - прогон тестов
+
+🛠 Технологический стек
+Языки: TypeScript
+
+Шаблонизация: Handlebars
+
+Стили: Sass
+
+Маршрутизация: Custom Router
+
+Тестирование: Jest
+
+Линтинг: ESLint, Stylelint (конфиг Airbnb)
+
+CI/CD: Netlify
 
 ### Публикация на Netlify
 
@@ -16,10 +32,12 @@ https://messanger-by-alex-de-suze.netlify.app/
 
 ### Страницы:
 
-localhost:3000/ или localhost:3000/main -главная
-localhost:3000/signin -главная
-localhost:3000/registration - регистрация
-localhost:3000/profile - профиль
+localhost:3000/messenger -главная
+localhost:3000/signin - вход
+localhost:3000/sign-up - регистрация
+localhost:3000//settings - профиль
+localhost:3000/change-password - смена пароля
+localhost:3000/change-userdata - изменение пользовательский данных
 localhost:3000/notFound - 404
 localhost:3000/error - 500
 
@@ -35,3 +53,23 @@ localhost:3000/error - 500
 Внедрил роутинг
 Добавил WebSoket для обмена сообщениями в реальном времени
 Добавил API чатов, авторизации, регистрации и настроек
+
+### Sprint 4
+
+Тестовое покрытие:
+✅ Полностью покрыты тестами ключевые модули:
+
+Компоненты (Component)
+
+HTTP-транспорт (HttpTransport)
+
+Роутер (Router)
+
+Процесс разработки:
+⚙️ Настроены pre-commit хуки, которые:
+
+Запускают линтинг через lint-staged (только для измененных файлов)
+
+Проверяют соответствие код-стайлу перед коммитом
+
+Прогоняют тесты

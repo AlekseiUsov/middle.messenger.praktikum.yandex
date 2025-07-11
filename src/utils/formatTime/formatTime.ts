@@ -1,7 +1,7 @@
 export function formatTime(
   isoString: string,
   timeZone = "Europe/Moscow",
-  locale = "ru-RU"
+  locale = "ru-RU",
 ) {
   const fullDate = new Date(isoString);
   const date = fullDate.toLocaleString(locale, { timeZone }).slice(0, 10);

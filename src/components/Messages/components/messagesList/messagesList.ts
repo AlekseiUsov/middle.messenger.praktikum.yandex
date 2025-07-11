@@ -9,8 +9,8 @@ export class MessagesList extends Block {
         (messages || []).map((message: IMessageProps, index: number) => [
           `Message_${index + 1}`,
           new Message(message),
-        ])
-      )
+        ]),
+      ),
     );
   }
 

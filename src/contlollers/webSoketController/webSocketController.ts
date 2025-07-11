@@ -12,7 +12,7 @@ class ChatWebSocket {
       this.disconect();
     }
     this.socket = new WebSocket(
-      `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`
+      `wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`,
     );
 
     this.socket.onopen = () => {

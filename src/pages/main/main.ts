@@ -20,7 +20,7 @@ export class Main extends Block {
 
   async loadChats() {
     const chats = await ChatsController.getChats(
-      Store.state.searchValue as string
+      Store.state.searchValue as string,
     );
     if (chats.reason) {
       this.children["Chats"].setProps({
