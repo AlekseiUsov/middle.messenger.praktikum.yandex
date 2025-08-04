@@ -34,15 +34,15 @@ export class SignIn extends Block {
         },
       }),
       Button: new Button({
-        text: "Авторизоваться",
+        text: "Войти",
         type: "submit",
         events: {
           click: () => this.checkValidationAllFields(),
         },
       }),
       Link: new Link({
-        text: "Войти",
-        href: "/",
+        text: "Авторизоваться",
+        href: "/sign-up",
       }),
       Error: new Error({
         text: "",
