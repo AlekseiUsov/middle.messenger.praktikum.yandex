@@ -1,7 +1,7 @@
 import { Block } from "../blocks";
 import { Route } from "./route";
 
-class Tracer {
+export class Tracer {
   routes: Route[] = [];
   history: History | null = null;
   __currentRoute: Route | null = null;

@@ -146,7 +146,7 @@ export class MessagesMenu extends Block {
               ...this.children["MenuModalAddUser"].children["Input"].props,
               error: false,
             }),
-          3000
+          3000,
         );
       }
 
@@ -167,7 +167,7 @@ export class MessagesMenu extends Block {
                 error: false,
                 errorText: ValidateFormMessages.Id,
               }),
-            3000
+            3000,
           );
         } else {
           this.closeModal();
@@ -186,7 +186,7 @@ export class MessagesMenu extends Block {
               ...this.children["MenuModalRemoveUser"].children["Input"].props,
               error: false,
             }),
-          3000
+          3000,
         );
       }
 
@@ -207,7 +207,7 @@ export class MessagesMenu extends Block {
                 error: false,
                 errorText: ValidateFormMessages.Id,
               }),
-            3000
+            3000,
           );
         } else {
           this.closeModal();

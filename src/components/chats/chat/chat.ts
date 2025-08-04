@@ -18,7 +18,7 @@ export class Chat extends Block {
           Store.set(
             NameEvent.setCurrentChat,
             Paths.currentChat,
-            this.props.id as number
+            this.props.id as number,
           ),
       },
     });

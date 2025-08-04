@@ -1,6 +1,6 @@
 import { queryStringify } from "./queryStringify";
 
-enum METHOD {
+export enum METHOD {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
@@ -19,10 +19,11 @@ type TOptions = {
 
 type TMethod = (
   url: string,
-  options: TOptionsWithoutMethod
+  options: TOptionsWithoutMethod,
 ) => Promise<XMLHttpRequest>;
 
 type TOptionsWithoutMethod = Omit<TOptions, "method">;
+export const BASE_URL = "https://ya-praktikum.tech/api/v2";
 
 export class HTTPTransport {
   private endpoint;
@@ -57,7 +58,7 @@ export class HTTPTransport {
     });
   };
 
-  private request(url: string, options: TOptions): Promise<XMLHttpRequest> {
+  request(url: string, options: TOptions): Promise<XMLHttpRequest> {
     const { headers = {}, method, data, timeout = 5000 } = options;
     return new Promise((resolve, reject) => {
       const isGet = method === METHOD.GET;
@@ -69,7 +70,7 @@ export class HTTPTransport {
 
       xhr.open(
         method,
-        isGet && !!data ? `${url}?${queryStringify(data as TData)}` : url
+        isGet && !!data ? `${url}?${queryStringify(data as TData)}` : url,
       );
 
       Object.keys(headers).forEach((key) => {

@@ -35,7 +35,7 @@ export const getFormValues = (element: HTMLElement) => {
 
 export const createFileForm = () => {
   const input = document.querySelectorAll(
-    "input[type=file]"
+    "input[type=file]",
   )[0] as HTMLInputElement;
   const file = input.files![0];
   const formdata = new FormData();

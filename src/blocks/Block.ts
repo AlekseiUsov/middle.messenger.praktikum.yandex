@@ -34,7 +34,7 @@ export class Block {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, (oldProps, newProps) =>
-      this._componentDidUpdate(oldProps as TProps, newProps as TProps)
+      this._componentDidUpdate(oldProps as TProps, newProps as TProps),
     );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }

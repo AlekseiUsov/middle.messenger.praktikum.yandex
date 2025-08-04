@@ -9,8 +9,8 @@ export class ChatList extends Block {
         chats.map((chat: IChatProps, index: number) => [
           `Chat_${index + 1}`,
           new Chat(chat),
-        ])
-      )
+        ]),
+      ),
     );
   }
 
